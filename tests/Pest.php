@@ -42,7 +42,99 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function someFunction()
 {
     // ..
 }
+
+/**
+ * Returns an array of model trait namespaces.
+ * @return array
+ */
+
+function getModelTraitNamespaces(): array
+{
+    static $cachedTraitNamespaces = [];
+
+    if ($cachedTraitNamespaces === []) {
+        $baseDir = __DIR__ . '/../app';
+        $traitTypes = ['Relationship', 'Scope'];
+        $traitNamespaces = [];
+
+        foreach ($traitTypes as $traitType) {
+            $pattern = $baseDir . '/Models/*/Traits/' . $traitType . '/*.php';
+            $files = glob($pattern);
+            foreach ($files as $file) {
+                $content = file_get_contents($file);
+                if (preg_match('/namespace\s+([^;]+)/i', $content, $matches)) {
+                    $traitNamespaces[$traitType][] = $matches[1];
+                }
+            }
+        }
+
+        $cachedTraitNamespaces = array_merge(
+            ['flatten' => collect($traitNamespaces)->flatten()->toArray()],
+            $traitNamespaces
+            );
+    }
+
+    return $cachedTraitNamespaces;
+}
+
+/**
+ * Returns an array of controller namespaces.
+ * @return array
+ */
+function getControllerNamespaces(): array
+{
+    static $cachedControllerNamespaces = [];
+
+    if ($cachedControllerNamespaces === []) {
+        $baseDir = __DIR__ . '/../app';
+        $controllerNamespaces = [];
+
+
+            $pattern = $baseDir . '/Http/Controllers/*/*.php';
+            $files = glob($pattern);
+
+            foreach ($files as $file) {
+                $content = file_get_contents($file);
+                if (preg_match('/namespace\s+([^;]+)/i', $content, $matches)) {
+                    $controllerNamespaces[] = $matches[1];
+                }
+            }
+
+
+        $cachedControllerNamespaces = collect($controllerNamespaces)->flatten()->toArray();
+    }
+
+    return $cachedControllerNamespaces;
+}
+
+function getServicesNamespaces(): array
+{
+    static $cachedServicesNamespaces = [];
+
+    if ($cachedServicesNamespaces === []) {
+        $baseDir = __DIR__ . '/../app';
+        $servicesNamespaces = [];
+
+
+        $pattern = $baseDir . '/Services/*/*.php';
+        $files = glob($pattern);
+
+        foreach ($files as $file) {
+            $content = file_get_contents($file);
+            if (preg_match('/namespace\s+([^;]+)/i', $content, $matches)) {
+                $servicesNamespaces[] = $matches[1];
+            }
+        }
+
+
+        $cachedServicesNamespaces = collect($servicesNamespaces)->flatten()->toArray();
+    }
+
+    return $cachedServicesNamespaces;
+}
+
+
