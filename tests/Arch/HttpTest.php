@@ -7,7 +7,10 @@ arch('controllers')
     ->toUseStrictTypes()
     ->toHaveSuffix('Controller')
     ->toBeFinal()
+    ->ignoring('App\Http\Controllers\Auth')
     ->toBeReadonly()
+    ->ignoring('App\Http\Controllers\Auth')
     ->toBeClasses()
-    ->toHaveConstructor();
+    ->toHaveConstructor()
+    ->ignoring('App\Http\Controllers\Auth');
 

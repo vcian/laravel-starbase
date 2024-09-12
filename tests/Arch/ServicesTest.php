@@ -8,4 +8,5 @@ arch('services')
     ->toBeFinal()
     ->toBeReadonly()
     ->toBeClasses()
-    ->toUseStrictTypes();;
+    ->toUseStrictTypes()
+    ->toOnlyBeUsedIn(getControllerNamespaces());;

@@ -8,5 +8,7 @@ use App\Models\User\User;
 
 final readonly class UserService
 {
+    public function __construct(Private User $user)
+    {
+    }
 }
-
