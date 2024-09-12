@@ -6,9 +6,10 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 
-final class UserController extends Controller
+final readonly class UserController
 {
-   public function __construct() {
+   public function __construct()
+   {
 
    }
 }
