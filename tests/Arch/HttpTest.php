@@ -4,7 +4,10 @@ declare(strict_types = 1);
 
 arch('controllers')
     ->expect(getControllerNamespaces())
+    ->toUseStrictTypes()
     ->toHaveSuffix('Controller')
-    ->toHaveConstructor()
-    ->toUseStrictTypes();
+    ->toBeFinal()
+    ->toBeReadonly()
+    ->toBeClasses()
+    ->toHaveConstructor();
 

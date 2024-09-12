@@ -12,12 +12,12 @@ declare(strict_types=1);
 
 arch('models')
     ->expect('App\Models')
-    ->toBeClasses() // Ensure that all models are classes.
-    ->ignoring( // Ignore traits.
-        getModelTraitNamespaces()['flatten']
-    )
     ->toBeFinal() // Ensure that all models are final.
     ->ignoring(
+        getModelTraitNamespaces()['flatten']
+    )
+    ->toBeClasses() // Ensure that all models are classes.
+    ->ignoring( // Ignore traits.
         getModelTraitNamespaces()['flatten']
     )
     ->toHaveMethod('casts') // Ensure that all models have a 'casts' method.
