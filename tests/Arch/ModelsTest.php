@@ -9,7 +9,6 @@ declare(strict_types=1);
  * - Models should extend 'Illuminate\Database\Eloquent\Model'.
  * - Models should only be used within the specified namespaces.
  */
-
 arch('models')
     ->expect('App\Models')
     ->toBeFinal() // Ensure that all models are final.
@@ -46,7 +45,7 @@ arch('models')
  * This test suite ensure that all model  relationship traits adhere to specific architectural rules:
  */
 arch('relationship')
-    ->expect(getModelTraitNamespaces()['Relationship'])
+    ->expect(getModelTraitNamespaces()['relationship'])
     ->toBeTrait()
     ->toHaveSuffix('Relationship')
     ->toUseStrictTypes();
@@ -55,7 +54,7 @@ arch('relationship')
  * This test suite ensure that all model  scope traits adhere to specific architectural rules:
  */
 arch('scope')
-    ->expect(getModelTraitNamespaces()['Scope'])
+    ->expect(getModelTraitNamespaces()['scope'])
     ->toBeTrait()
     ->toHaveSuffix('Scope')
     ->toUseStrictTypes();

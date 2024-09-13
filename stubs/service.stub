@@ -1,0 +1,17 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use App\Models\{{ model }}\{{ model }};
+
+final readonly class {{ class }}
+{
+    public function __construct()
+    {
+
+    }
+
+    // Add your custom service methods here
+}
